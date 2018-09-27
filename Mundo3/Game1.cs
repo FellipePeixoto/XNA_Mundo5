@@ -120,8 +120,9 @@ namespace Mundo5
             if (flag) multi -= 0.003f; else multi += 0.003f;
 
             Color color = Color.CornflowerBlue * (1-multi);
-            Color wh = Color.White * multi;
-            GraphicsDevice.Clear(Color.CornflowerBlue*multi);
+            color = Color.White * multi;
+
+            GraphicsDevice.Clear(color);
 
             // TODO: Add your drawing code here
             SceneManager.Draw();
