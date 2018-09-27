@@ -18,8 +18,10 @@ namespace Mundo5
     /// </summary>
     public class Game1 : Microsoft.Xna.Framework.Game
     {
-        float multi = 0;
+        public static float multi = 0;
+        public static float interval = 0.003f;
         bool flag = false;
+        Color blue = new Color(100, 149, 237);
 
         GraphicsDeviceManager graphics;
         SpriteBatch spriteBatch;
@@ -117,12 +119,13 @@ namespace Mundo5
             if (multi >= 1 && !flag) flag = true;
             if (multi <= 0 && flag) flag = false;
 
-            if (flag) multi -= 0.003f; else multi += 0.003f;
+            if (flag) multi -= interval; else multi += interval;
 
-            Color color = Color.CornflowerBlue * (1-multi);
-            color = Color.White * multi;
+            blue.R = (byte)(100 + MathHelper.Lerp(0, 155, multi));
+            blue.G = (byte)(149 + MathHelper.Lerp(0, 106, multi));
+            blue.B = (byte)(237 + MathHelper.Lerp(0, 18, multi));
 
-            GraphicsDevice.Clear(color);
+            GraphicsDevice.Clear(blue);
 
             // TODO: Add your drawing code here
             SceneManager.Draw();

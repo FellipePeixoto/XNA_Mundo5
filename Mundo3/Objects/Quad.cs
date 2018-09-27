@@ -126,19 +126,14 @@ namespace Mundo5.Objects
         public void Draw(Camera camera)
         {
             if (vertType == VERTEX_TYPE.Texture)
-            {
-                if (multi >= 1 && !flag) flag = true;
-                if (multi <= 0 && flag) flag = false;
-
-                if (flag) multi -= 0.003f; else multi += 0.003f;
-              
+            {         
                 device.SetVertexBuffer(this.vertexBuffer);
 
                 this.effect.CurrentTechnique = this.effect.Techniques["Technique1"];
                 this.effect.Parameters["World"].SetValue(this.world);
                 this.effect.Parameters["View"].SetValue(camera.GetView());
                 this.effect.Parameters["Projection"].SetValue(camera.GetProjection());
-                this.effect.Parameters["multi"].SetValue(multi);
+                this.effect.Parameters["multi"].SetValue(Game1.multi);
                 this.effect.Parameters["colorTextureSnow"].SetValue(this.snowTexture);
                 this.effect.Parameters["colorTexture"].SetValue(this.texture);
 
